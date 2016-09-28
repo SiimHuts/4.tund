@@ -14,14 +14,20 @@
 	
 	$database = "if16_siim_1";
 	
-	function signup ($email, $password) {
+	function signup ($email, $password, $gender, $bday) {
+		
+		$date=date_create($bday);
+		$newDate = date_format($date,"Y-m-d");
+		
+		//echo $gender;
+		
 		
 		$mysqli = new mysqli($GLOBALS["serverHost"],$GLOBALS["serverUsername"],$GLOBALS["serverPassword"],$GLOBALS["database"]);
 		
-		$stmt = $mysqli->prepare("INSERT INTO user_sample (email,password) VALUES (?, ?)");
+		$stmt = $mysqli->prepare("INSERT INTO user_sample (email,password, bday, gender) VALUES (?, ?, ?, ?)");
 		echo $mysqli->error;
 		
-		$stmt->bind_param("ss", $email, $password); 
+		$stmt->bind_param("ssss", $email, $password, $newDate, $gender); 
 		
 		if ($stmt->execute()) {
 			

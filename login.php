@@ -18,9 +18,9 @@
 	$loginEmailError = "";
 	$loginPasswordError = "";
 	$signupEmail = "";
-	$gender = "female";
+	$gender = "";
 	$error = "";
-	
+	$bday = "";
 	
 	// kas e-post oli olemas
 	
@@ -55,6 +55,16 @@
 					
 				}
 			}
+			
+			
+			if (isset($_POST["gender"])){
+				
+				$gender = $_POST["gender"];
+				
+			}
+				
+				
+			
 		}
 		
 	if ( isset ( $_POST["loginEmail"] ) ) {
@@ -96,7 +106,7 @@
 		//echo $serverUsername;
 		//echo $serverPassword;
 		
-		signup($signupEmail, $password);
+		signup($signupEmail, $password, $gender, $bday);
 	}
 	
 	
